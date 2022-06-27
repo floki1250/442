@@ -1,13 +1,13 @@
 <template>
-  <client-only class="Field">
+  <client-only>
     <grid-layout
       :layout.sync="layout"
       :col-num="30"
       :row-height="30"
       :is-draggable="draggable"
       :is-resizable="false"
+      :use-css-transforms="true"
       :vertical-compact="false"
-      :use-css-transforms="false"
     >
       <grid-item
         v-for="item in layout"
@@ -18,8 +18,8 @@
         :w="item.w"
         :h="item.h"
         :i="item.i"
-      ><img src="../assets/player.svg" alt="">
-        <span class="text">{{ itemTitle(item) }}</span>
+        ><img src="../assets/player.svg" alt="" />
+        <span class="text">{{ item.i }}</span>
       </grid-item>
     </grid-layout>
   </client-only>
@@ -40,65 +40,54 @@ export default {
         { x: 6, y: 0, w: 2, h: 2, i: '3', static: false },
         { x: 8, y: 0, w: 2, h: 2, i: '4', static: false },
         { x: 10, y: 0, w: 2, h: 2, i: '5', static: false },
-        { x: 0, y: 5, w: 2, h: 2, i: '6', static: false },
-        { x: 2, y: 5, w: 2, h: 2, i: '7', static: false },
-        { x: 4, y: 5, w: 2, h: 2, i: '8', static: false },
-        { x: 6, y: 3, w: 2, h: 2, i: '9', static: false },
-        { x: 8, y: 4, w: 2, h: 2, i: '10', static: false },
-        { x: 10, y: 1, w: 2, h: 2, i: '11', static: false },
+        { x: 0, y: 2, w: 2, h: 2, i: '6', static: false },
+        { x: 2, y: 2, w: 2, h: 2, i: '7', static: false },
+        { x: 4, y: 2, w: 2, h: 2, i: '8', static: false },
+        { x: 6, y: 2, w: 2, h: 2, i: '9', static: false },
+        { x: 8, y: 2, w: 2, h: 2, i: '10', static: false },
+        { x: 10, y: 2, w: 2, h: 2, i: '11', static: false },
       ],
 
       index: 0,
     }
   },
-  methods: {
-    itemTitle(item) {
-      let result = item.i
-      if (item.static) {
-        result += ' - Static'
-      }
-      return result
-    },
-  },
+  methods: {},
 }
 </script>
 
 <style scoped>
 .vue-grid-layout {
+  background: transparent;
+  height: 500px !important;
 }
-.vue-grid-item {
-  border-radius: 0%;
+.vue-grid-placeholder {
+  background: rgb(163, 164, 228) !important;
+  opacity: 0.9;
+  transition-duration: 100ms;
+  z-index: 2;
 }
 .vue-grid-item:not(.vue-grid-placeholder) {
-  background: transparent ;
+  background: transparent;
+}
 
-}
-.vue-grid-item .resizing {
-  opacity: 0.1;
-}
-.vue-grid-item .static {
-  background: #cce;
-}
 .vue-grid-item .text {
+  color: white;
   font-size: 24px;
   text-align: center;
   position: absolute;
-  top: 1%;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
   height: 100%;
   width: 100%;
-  color: white;
 }
 .vue-grid-item .no-drag {
-  height: 100%;
+  height: 500px !important;
   width: 100%;
 }
-.vue-grid-item .minMax {
-  font-size: 12px;
-}
+
 .vue-grid-item .add {
   cursor: pointer;
 }
