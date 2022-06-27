@@ -18,7 +18,7 @@
         :w="item.w"
         :h="item.h"
         :i="item.i"
-      >
+      ><img src="../assets/player.svg" alt="">
         <span class="text">{{ itemTitle(item) }}</span>
       </grid-item>
     </grid-layout>
@@ -67,12 +67,11 @@ export default {
 .vue-grid-layout {
 }
 .vue-grid-item {
-  border-radius: 100%;
+  border-radius: 0%;
 }
 .vue-grid-item:not(.vue-grid-placeholder) {
-  background: rgb(73, 47, 223);
+  background: transparent ;
 
-  border: 1px solid black;
 }
 .vue-grid-item .resizing {
   opacity: 0.1;
@@ -83,14 +82,15 @@ export default {
 .vue-grid-item .text {
   font-size: 24px;
   text-align: center;
-  position: relative;
-  top: 0;
+  position: absolute;
+  top: 1%;
   bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
   height: 100%;
   width: 100%;
+  color: white;
 }
 .vue-grid-item .no-drag {
   height: 100%;
@@ -103,7 +103,7 @@ export default {
   cursor: pointer;
 }
 .vue-draggable-handle {
-  position: relative;
+  position: absolute;
   width: 20px;
   height: 20px;
   top: 0;

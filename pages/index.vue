@@ -50,9 +50,7 @@
         </div>
       </div>
       <hr />
-      <div>
-        <p>hfsdfffffff</p>
-      </div>
+
     </div>
   </div>
 </template>
