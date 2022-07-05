@@ -18,8 +18,15 @@
         :w="item.w"
         :h="item.h"
         :i="item.i"
-        ><img src="../assets/player.svg" alt="" />
-        <span class="text">{{ item.i }}</span>
+      >
+        <div>
+          <div class="playerShirt">
+            <b-button size="is-medium" rounded style="background: transparent">
+              <span class="text">{{ item.i }}</span>
+            </b-button>
+          </div>
+          <span>99</span>
+        </div>
       </grid-item>
     </grid-layout>
   </client-only>
