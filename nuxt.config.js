@@ -1,5 +1,9 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  loading: {
+    color: 'white',
+    height: '5px',
+  },
   head: {
     title: '442',
     htmlAttrs: {
@@ -32,6 +36,14 @@ export default {
 
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    [
+      'nuxt-supabase',
+      {
+        supabaseUrl: 'https://tzhvvvaxndbnwbwabjth.supabase.co',
+        supabaseKey:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR6aHZ2dmF4bmRibndid2FianRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTcxODYwNTAsImV4cCI6MTk3Mjc2MjA1MH0.kqxUPn1k7-ARmKO0no7MLNx6PI4TXhFAO1Eyqh710BQ',
+      },
+    ],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

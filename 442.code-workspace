@@ -5,6 +5,8 @@
     }
   ],
   "settings": {
-    "nuxt.isNuxtApp": true
+    "nuxt.isNuxtApp": true,
+    "terminal.explorerKind": "external",
+    "terminal.integrated.allowChords": true
   }
 }
