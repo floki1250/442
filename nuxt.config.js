@@ -33,7 +33,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     'nuxt-buefy',
-
+    '@nuxt/image',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     [
