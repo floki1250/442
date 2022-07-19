@@ -1,13 +1,15 @@
 /* Grid Field Style*/
+@import "variables.scss";
 .vue-grid-layout {
   background: transparent;
-  height: 500px !important;
+  height: 100% !important;
 }
 .vue-grid-placeholder {
-  background: rgb(163, 164, 228) !important;
+  background: $primary !important;
   opacity: 0.9;
   transition-duration: 100ms;
   z-index: 2;
+  border-radius: 10px;
 }
 .vue-grid-item:not(.vue-grid-placeholder) {
   background: transparent;
@@ -32,7 +34,7 @@
 }
 
 .vue-grid-item .add {
-  cursor: pointer;
+  cursor: move;
 }
 .vue-draggable-handle {
   position: absolute;
@@ -40,14 +42,13 @@
   height: 20px;
   top: 0;
   left: 0;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><circle cx='5' cy='5' r='5' fill='#999999'/></svg>")
-    no-repeat;
+
   background-position: bottom right;
   padding: 0 8px 8px 0;
   background-repeat: no-repeat;
   background-origin: content-box;
   box-sizing: border-box;
-  cursor: pointer;
+  cursor: move;
 }
 
 /* ---------------------- */

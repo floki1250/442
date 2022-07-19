@@ -24,6 +24,9 @@
           >
             Fullscreen
           </b-button>
+          <b-button @click="calculateFieldSize"
+            >{{ divwidth }} | {{ maxRows }}</b-button
+          >
         </div>
         <fullscreen v-model="fullscreen">
           <div
@@ -36,18 +39,18 @@
             <div class="players">
               <client-only>
                 <grid-layout
-                  :layout.sync="layout"
+                  :layout.sync="teamsLayout"
                   :col-num="24"
                   :row-height="30"
                   :is-draggable="true"
                   :is-resizable="false"
-                  :use-css-transforms="true"
                   :vertical-compact="false"
+                  :use-css-transforms="true"
                   :auto-Size="false"
                   :maxRows="maxRows"
                 >
                   <grid-item
-                    v-for="item in layout"
+                    v-for="item in layout.team1"
                     :key="item.i"
                     :static="item.static"
                     :x="item.x"
@@ -61,6 +64,29 @@
                         class="playerShirt"
                         :style="{ background: team1style }"
                       >
+                        <b-button
+                          size="is-medium"
+                          rounded
+                          style="background: transparent"
+                        >
+                          <span class="text">{{ item.i }}</span>
+                        </b-button>
+                      </div>
+                      <div style="text-align: left">{{ item.name }}</div>
+                    </div>
+                  </grid-item>
+                  <grid-item
+                    v-for="item in layout.team2"
+                    :key="item.i"
+                    :static="item.static"
+                    :x="item.x"
+                    :y="item.y"
+                    :w="item.w"
+                    :h="item.h"
+                    :i="item.i"
+                  >
+                    <div>
+                      <div class="playerShirt" style="background: red">
                         <b-button
                           size="is-medium"
                           rounded
@@ -150,6 +176,7 @@ import VueFullscreen from 'vue-fullscreen'
 import Vue from 'vue'
 import data from '../assets/layout.json'
 import html2canvas from 'html2canvas'
+
 Vue.use(VueFullscreen)
 
 export default {
@@ -157,6 +184,7 @@ export default {
 
   data() {
     return {
+      items: null,
       layout: data.layout,
       index: 0,
       fullscreen: false,
@@ -176,6 +204,7 @@ export default {
 
   methods: {
     calculateFieldSize() {
+      console.log(this.$refs.field.clientWidth)
       this.divwidth = this.$refs.field.clientWidth
     },
     takeScreenShot() {
@@ -197,19 +226,16 @@ export default {
       .select('team,logo,id')
   },
   computed: {
+    teamsLayout() {
+      var teams = this.layout.team1.concat(this.layout.team2)
+      console.log(teams)
+      return teams
+    },
     maxRows() {
       if ((this.$refs.field = !null)) {
         if (this.fullscreen == true) return 19
         else {
-          this.calculateFieldSize()
-          switch (this.divwidth) {
-            case this.divwidth >= 800:
-              return 11
-            case this.divwidth < 800 && this.divwidth >= 700:
-              return 9
-            default:
-              return 11
-          }
+          return 10
         }
       }
     },
