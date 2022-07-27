@@ -1,5 +1,20 @@
 /* Grid Field Style*/
 @import "variables.scss";
+
+.style-chooser .vs__search::placeholder,
+.style-chooser .vs__dropdown-toggle,
+.style-chooser .vs__dropdown-menu {
+  background: #fff;
+  border: solid 1px whitesmoke;
+  color: #000;
+  text-transform: lowercase;
+  font-variant: small-caps;
+}
+
+.style-chooser .vs__clear,
+.style-chooser .vs__open-indicator {
+  fill: #000;
+}
 .vue-grid-layout {
   background: transparent;
   height: 100% !important;
