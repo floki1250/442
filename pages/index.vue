@@ -89,8 +89,10 @@
             <b-tab-item label="Team 2">
               <div class="columns is-mobile is-centered">
                 <div class="column is-half" style="width: fit-content">
-                  <!-- <img :src="findclublogo" alt="" width="100px" /> -->
-                  <nuxt-img src="/442Club.png" width="150px" />
+                  <nuxt-img
+                    :src="(team2.team.logo == 'NA' || team2.team.logo == null) ? '/442Club.png' : team2.team.logo"
+                    alt="" width="150px" />
+
                 </div>
 
                 <div class="column is-half">
