@@ -29,11 +29,13 @@
             <div v-else>
               Lineup
             </div>
-            <div class="overlay" v-show="overlay">
-              <b-button @click="fullscreen = !fullscreen" type="is-ghost" size="50px">
-                <img src="/expand.svg" alt="" width="50px">
-              </b-button>
-            </div>
+            <Transition appear>
+              <div class="overlay" v-if="overlay">
+                <b-button @click="fullscreen = !fullscreen" type="is-ghost" size="50px">
+                  <img src="/expand.svg" alt="" width="50px">
+                </b-button>
+              </div>
+            </Transition>
             <div class="players">
               <client-only>
                 <grid-layout :layout="teamsLayout" :col-num="24" :row-height="30" :is-draggable="true"
