@@ -9,28 +9,36 @@
         </div>
       </div>
     </div>
-
     <div class="columns">
       <div class="column is-three-fifths">
         <div style="margin-left: 10px">
           <b-button outlined @click="takeScreenShot" type="is-warning">
             ScrenShot
           </b-button>
-
-          <b-button outlined @click="fullscreen = !fullscreen" type="is-primary">
-            Fullscreen
+          <b-button outlined @click="lineup = !lineup" type="is-warning">
+            Lineup
           </b-button>
           <strong>{{ divwidth }} | {{ maxRows }}</strong>
         </div>
         <fullscreen v-model="fullscreen">
-          <div style="position: relative; padding: 10px" id="capture" ref="field">
-            <img src="/field.jpg" />
-
+          <div ref="field" class="lineupSection" @mouseover="(fullscreen == false) ? overlay = true : overlay = false"
+            @mouseleave="overlay = false">
+            <div v-if="lineup == false">
+              <img src="/field.jpg" />
+            </div>
+            <div v-else>
+              Lineup
+            </div>
+            <div class="overlay" v-show="overlay">
+              <b-button @click="fullscreen = !fullscreen" type="is-ghost" size="50px">
+                <img src="/expand.svg" alt="" width="50px">
+              </b-button>
+            </div>
             <div class="players">
               <client-only>
                 <grid-layout :layout="teamsLayout" :col-num="24" :row-height="30" :is-draggable="true"
                   :is-resizable="false" :vertical-compact="false" :use-css-transforms="true" :auto-Size="false"
-                  :maxRows="maxRows" :responsive="false">
+                  :maxRows="maxRows" :responsive="false" v-show="fullscreen">
                   <grid-item v-for="item in layout.team1" :key="'1' + item.i" :static="item.static" :x="item.x"
                     :y="item.y" :w="item.w" :h="item.h" :i="item.i">
                     <div>
@@ -169,7 +177,9 @@ export default {
   components: { 'v-select': vSelect },
   data () {
     return {
+      overlay: false,
       items: null,
+      lineup: false,
       layout: data.layout,
       index: 0,
       fullscreen: false,
@@ -298,4 +308,3 @@ export default {
   },
 }
 </script>
-

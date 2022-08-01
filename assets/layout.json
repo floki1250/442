@@ -33,7 +33,7 @@
         "i": "99",
         "static": true,
         "name": "GoalKeeper T2",
-        "playerNumber": 1,
+        "playerNumber": 10,
         "team": 2
       },
       {
@@ -44,7 +44,7 @@
         "i": "98",
         "static": false,
         "name": "PlayerName T2",
-        "playerNumber": 1,
+        "playerNumber": 99,
         "team": 2
       }
     ]
