@@ -9,67 +9,67 @@
         </div>
       </div>
     </div>
-    <div class="columns">
-      <div class="column is-three-fifths">
-        <div style="margin-left: 10px">
-          <b-button outlined @click="takeScreenShot" type="is-warning">
-            ScrenShot
-          </b-button>
-          <b-button outlined @click="lineup = !lineup" type="is-warning">
-            Lineup
-          </b-button>
-          <strong>{{ divwidth }} | {{ maxRows }}</strong>
-        </div>
-        <fullscreen v-model="fullscreen">
-          <div ref="field" class="lineupSection" @mouseover="(fullscreen == false) ? overlay = true : overlay = false"
-            @mouseleave="overlay = false">
-            <div v-if="lineup == false">
-              <img src="/field.jpg" />
-            </div>
-            <div v-else>
-              Lineup
-            </div>
-            <Transition appear>
-              <div class="overlay" v-if="overlay">
-                <b-button @click="fullscreen = !fullscreen" type="is-ghost" size="50px">
-                  <img src="/expand.svg" alt="" width="50px">
-                </b-button>
-              </div>
-            </Transition>
-            <div class="players">
-              <client-only>
-                <grid-layout :layout="teamsLayout" :col-num="24" :row-height="30" :is-draggable="true"
-                  :is-resizable="false" :vertical-compact="false" :use-css-transforms="true" :auto-Size="false"
-                  :maxRows="maxRows" :responsive="false" v-show="fullscreen">
-                  <grid-item v-for="item in layout.team1" :key="'1' + item.i" :static="item.static" :x="item.x"
-                    :y="item.y" :w="item.w" :h="item.h" :i="item.i">
-                    <div>
-                      <div class="playerShirt" :style="{ background: team1style }">
-                        <b-button size="is-medium" rounded style="background: transparent" @click="editPlayer(item)">
-                          <span class="text">{{ item.playerNumber }}</span>
-                        </b-button>
+
+    <div class="columns is-mobile ">
+      <div class="column is-three-fifths" style="margin: 10px;">
+        <div class="scene scene--card">
+          <div class="subscene" :class="{ flipme: cardOne == 'flipped' }">
+            <div class="card__face card__face--front" @mouseenter="overlay = true" @mouseleave="overlay = false">
+              <img src="/field.jpg" width="80%" style="position:absolute;top:0%;left:10%">
+              <Transition appear>
+                <div class="overlay" v-if="overlay">
+                  <b-button @click="fullscreen = true" v-show="cardOne == 'start' ? true : false" type="is-ghost"
+                    size="50px">
+                    <img src="/expand.svg" alt="" width="50px">
+                  </b-button>
+                </div>
+              </Transition>
+
+              <fullscreen v-model="fullscreen">
+                <img src="/field.jpg" v-show="fullscreen">
+                <div class="players">
+                  <grid-layout :layout="teamsLayout" :col-num="24" :row-height="30" :is-draggable="true"
+                    :is-resizable="false" :vertical-compact="false" :use-css-transforms="true" :auto-Size="false"
+                    :maxRows="maxRows" :responsive="false" v-show="fullscreen">
+                    <grid-item v-for="item in layout.team1" :key="'1' + item.i" :static="item.static" :x="item.x"
+                      :y="item.y" :w="item.w" :h="item.h" :i="item.i" style="touch-action: none">
+                      <div>
+                        <div class="playerShirt" :style="{ background: team1style }">
+                          <b-button size="is-medium" rounded style="background: transparent" @click="editPlayer(item)">
+                            <span class="text">{{ item.playerNumber }}</span>
+                          </b-button>
+                        </div>
+                        <div style="text-align: left">{{ item.name }}</div>
                       </div>
-                      <div style="text-align: left">{{ item.name }}</div>
-                    </div>
-                  </grid-item>
-                  <grid-item v-for="item in layout.team2" :key="'2' + item.i" :static="item.static" :x="item.x"
-                    :y="item.y" :w="item.w" :h="item.h" :i="item.i">
-                    <div>
-                      <div class="playerShirt" :style="{ background: team2style }">
-                        <b-button size="is-medium" rounded style="background: transparent" @click="editPlayer(item)">
-                          <span class="text">{{ item.playerNumber }}</span>
-                        </b-button>
+                    </grid-item>
+                    <grid-item v-for="item in layout.team2" :key="'2' + item.i" :static="item.static" :x="item.x"
+                      :y="item.y" :w="item.w" :h="item.h" :i="item.i">
+                      <div>
+                        <div class="playerShirt" :style="{ background: team2style }">
+                          <b-button size="is-medium" rounded style="background: transparent" @click="editPlayer(item)">
+                            <span class="text">{{ item.playerNumber }}</span>
+                          </b-button>
+                        </div>
+                        <div style="text-align: left">{{ item.name }}</div>
                       </div>
-                      <div style="text-align: left">{{ item.name }}</div>
-                    </div>
-                  </grid-item>
-                </grid-layout>
-              </client-only>
+                    </grid-item>
+                  </grid-layout>
+
+                </div>
+              </fullscreen>
+            </div>
+            <div class="card__face card__face--back">
+              <b-tabs expanded v-model="activeTab">
+                <b-tab-item label="Team 1">
+                  <b-button>Test Me</b-button>
+                </b-tab-item>
+                <b-tab-item label="Team 2">
+                </b-tab-item>
+              </b-tabs>
             </div>
           </div>
-        </fullscreen>
+        </div>
       </div>
-
       <div class="column settings">
         <div>
           <b-tabs expanded v-model="activeTab">
@@ -124,12 +124,12 @@
             </b-tab-item>
           </b-tabs>
         </div>
+        <b-button outlined @click="cardOne == 'start' ? (cardOne = 'flipped') : (cardOne = 'start')" type="is-warning">
+          Lineup
+        </b-button>
       </div>
     </div>
-    <div>
-      <h2>ScreenShots :</h2>
-      <div ref="ScreenShot" style="width: 100%; overflow-x: scroll"></div>
-    </div>
+
     <hr />
     <footer class="footer" style="margin: 10px">
       <div class="content has-text-centered">
@@ -170,7 +170,6 @@
 import VueFullscreen from 'vue-fullscreen'
 import Vue from 'vue'
 import data from '../assets/layout.json'
-import html2canvas from 'html2canvas'
 import vSelect from 'vue-select'
 Vue.use(VueFullscreen)
 import 'vue-select/dist/vue-select.css';
@@ -188,6 +187,7 @@ export default {
       teams: [],
       isComponentModalActive: false,
       activeTab: 0,
+      cardOne: "start",
       divwidth: 0,
       SelectedplayerName: '',
       SelectedplayerNumber: 0,
@@ -243,11 +243,7 @@ export default {
     calculateFieldSize () {
       this.divwidth = this.$refs.field.clientWidth
     },
-    takeScreenShot () {
-      html2canvas(this.$refs.field).then((canvas) => {
-        this.$refs.ScreenShot.appendChild(canvas)
-      })
-    },
+
     scrollToTop () {
       window.window.scrollTo({
         top: 0,

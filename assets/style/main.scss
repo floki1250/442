@@ -105,8 +105,6 @@ body {
   left: 0;
   z-index: 20;
   width: 100%;
-  height: 100% !important;
-  max-height: 500px;
 }
 .playerShirt {
   background-size: 80px 80px;
@@ -145,13 +143,6 @@ body {
 ::-webkit-resizer {
   background-color: rgb(0, 0, 0);
 }
-.tabs {
-  color: red !important;
-}
-.lineupSection {
-  position: relative;
-  padding: 10px;
-}
 .overlay {
   display: flex;
   justify-content: center;
@@ -180,4 +171,34 @@ body {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+
+.scene {
+  width: 100%;
+  height: 100%;
+  perspective: 500px;
+}
+
+.subscene {
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.card__face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card__face--back {
+  transform: rotateX(180deg);
+}
+/* this style is applied when the card is clicked */
+.flipme {
+  transform: rotateX(180deg);
 }
