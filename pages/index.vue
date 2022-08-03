@@ -4,7 +4,7 @@
       <div class="columns is-mobile is-centered">
         <div class="column is-half" style="width: fit-content !important">
           <a @click="scrollToTop">
-            <nuxt-img src="/442Logo.svg" alt="442" width="80px" />
+            <img src="/442Logo.svg" alt="442" width="80px" />
           </a>
         </div>
       </div>
@@ -76,8 +76,7 @@
             <b-tab-item label="Team 1">
               <div class="columns is-mobile is-centered">
                 <div class="column is-half" style="width: fit-content">
-                  <nuxt-img
-                    :src="(team1.team.logo == 'NA' || team1.team.logo == null) ? '/442Club.png' : team1.team.logo"
+                  <img :src="(team1.team.logo == 'NA' || team1.team.logo == null) ? '/442Club.png' : team1.team.logo"
                     alt="" width="150px" />
 
                 </div>
@@ -99,8 +98,7 @@
             <b-tab-item label="Team 2">
               <div class="columns is-mobile is-centered">
                 <div class="column is-half" style="width: fit-content">
-                  <nuxt-img
-                    :src="(team2.team.logo == 'NA' || team2.team.logo == null) ? '/442Club.png' : team2.team.logo"
+                  <img :src="(team2.team.logo == 'NA' || team2.team.logo == null) ? '/442Club.png' : team2.team.logo"
                     alt="" width="150px" />
 
                 </div>
