@@ -4,7 +4,13 @@
       <div class="columns is-mobile is-centered">
         <div class="column is-half" style="width: fit-content !important">
           <a @click="scrollToTop">
-            <nuxt-img src="/442Logo.webp" alt="442" width="80px" format="webp" provider="static" />
+            <nuxt-img
+              src="/442Logo.webp"
+              alt="442"
+              width="80px"
+              format="webp"
+              provider="static"
+            />
           </a>
         </div>
       </div>
@@ -19,7 +25,6 @@
                   display: flex;
                   justify-content: center;
                   align-items: center;
-
                 "
               >
                 <Transition appear>
@@ -30,13 +35,16 @@
                       type="is-ghost"
                       size="50px"
                     >
-                      <nuxt-img
+                    <slot>
+                       <nuxt-img
                         src="/expand.svg"
                         alt="expand"
                         width="50px"
                         provider="static"
                         quality="100"
                       />
+                    </slot>
+
                     </b-button>
                   </div>
                 </Transition>
@@ -77,7 +85,10 @@
                         style="touch-action: none"
                       >
                         <div>
-                          <div class="playerShirt" :style="{ background: team1style }">
+                          <div
+                            class="playerShirt"
+                            :style="{ background: team1style }"
+                          >
                             <b-button
                               size="is-medium"
                               rounded
@@ -102,7 +113,10 @@
                         style="touch-action: none"
                       >
                         <div>
-                          <div class="playerShirt" :style="{ background: team2style }">
+                          <div
+                            class="playerShirt"
+                            :style="{ background: team2style }"
+                          >
                             <b-button
                               size="is-medium"
                               rounded
@@ -183,7 +197,12 @@
                         : false
                     "
                   />
-                  <nuxt-img v-else :src="team2.team.logo" width="150px" format="webp" />
+                  <nuxt-img
+                    v-else
+                    :src="team2.team.logo"
+                    width="150px"
+                    format="webp"
+                  />
                 </div>
                 <div class="column is-half">
                   <b-field label="Team 2 :">
@@ -210,21 +229,29 @@
           expanded
           outlined
           @click="
-            cardOne == 'start' ? (cardOne = 'flipped', overlay = false): (cardOne = 'start', overlay = true)
+            cardOne == 'start'
+              ? ((cardOne = 'flipped'), (overlay = false))
+              : ((cardOne = 'start'), (overlay = true))
           "
           type="is-primary"
-        >Lineup</b-button>
+          >Lineup</b-button
+        >
       </div>
     </div>
     <div style="height: 250px"></div>
-    <hr />
-    <footer>
+
+    <footer >
       <div
         class="content has-text-centered has-text-white"
         style="margin: 10px; padding: 50px; color: white !important"
       >
-        <div class="columns">
-          <nuxt-img src="/442Club.webp" alt="Team Logo" width="150px" provider="static" />
+        <div class="columns ">
+          <nuxt-img
+            src="/442Club.webp"
+            alt="Team Logo"
+            width="150px"
+            provider="static"
+          />
           <div class="column is-2" style="text-align: left">
             About
             <P>
@@ -234,13 +261,10 @@
           </div>
         </div>
         <div
-          class="columns"
+          class="columns is-centered"
           style="
             width: 100%;
             margin: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
           "
         >
           <div class="column is-2">
@@ -252,7 +276,8 @@
           <div class="column is-2">
             <a href="Twitter.com">LinkedIN</a>
           </div>
-        </div>Made with ❤️ by Me
+        </div>
+        Made with ❤️ by Me
       </div>
     </footer>
   </div>
