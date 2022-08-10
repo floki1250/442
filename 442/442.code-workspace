@@ -1,0 +1,12 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "nuxt.isNuxtApp": true,
+    "terminal.explorerKind": "external",
+    "terminal.integrated.allowChords": true
+  }
+}
