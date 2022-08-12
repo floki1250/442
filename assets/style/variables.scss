@@ -74,10 +74,14 @@ $colors: mergeColorMaps(
 );
 
 // Links
-$link: $secondary;
-$link-invert: $primary-invert;
+$link: $primary;
+$link-invert: $secondary;
 $link-focus-border: $primary;
-
+$hr-background-color: $secondary;
+$tabs-boxed-link-focus-active-background-color: black;
+$tabs-boxed-link-active-background-color: black;
+$tabs-boxed-link-focus-background-color: white;
+$tabs-boxed-link-hover-background-color: white;
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";

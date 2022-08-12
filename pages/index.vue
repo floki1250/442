@@ -4,13 +4,7 @@
       <div class="columns is-mobile is-centered">
         <div class="column is-half" style="width: fit-content !important">
           <a @click="scrollToTop">
-            <nuxt-img
-              src="/442Logo.webp"
-              alt="442"
-              width="80px"
-              format="webp"
-              provider="static"
-            />
+            <nuxt-img src="/442Logo.webp" alt="442" width="80px" format="webp" provider="static" />
           </a>
         </div>
       </div>
@@ -35,16 +29,15 @@
                       type="is-ghost"
                       size="50px"
                     >
-                    <slot>
-                       <nuxt-img
-                        src="/expand.svg"
-                        alt="expand"
-                        width="50px"
-                        provider="static"
-                        quality="100"
-                      />
-                    </slot>
-
+                      <slot>
+                        <nuxt-img
+                          src="/expand.svg"
+                          alt="expand"
+                          width="50px"
+                          provider="static"
+                          quality="100"
+                        />
+                      </slot>
                     </b-button>
                   </div>
                 </Transition>
@@ -85,10 +78,7 @@
                         style="touch-action: none"
                       >
                         <div>
-                          <div
-                            class="playerShirt"
-                            :style="{ background: team1style }"
-                          >
+                          <div class="playerShirt" :style="{ background: team1style }">
                             <b-button
                               size="is-medium"
                               rounded
@@ -113,10 +103,7 @@
                         style="touch-action: none"
                       >
                         <div>
-                          <div
-                            class="playerShirt"
-                            :style="{ background: team2style }"
-                          >
+                          <div class="playerShirt" :style="{ background: team2style }">
                             <b-button
                               size="is-medium"
                               rounded
@@ -135,11 +122,13 @@
               </fullscreen>
             </div>
             <div class="card__face card__face--back">
-              <b-tabs expanded v-model="activeTab">
+              <b-tabs expanded v-model="activeTab" type="is-boxed">
                 <b-tab-item label="Team 1">
-                  <b-button>Test Me</b-button>
+                  <div v-for="i in layout.team1" :key="i.i">{{i.playerNumber}} | {{i.name}}</div>
                 </b-tab-item>
-                <b-tab-item label="Team 2"></b-tab-item>
+                <b-tab-item label="Team 2">
+                  <div v-for="i in layout.team2" :key="i.i">{{i.playerNumber}} | {{i.name}}</div>
+                </b-tab-item>
               </b-tabs>
             </div>
           </div>
@@ -147,7 +136,7 @@
       </div>
       <div class="column settings">
         <div>
-          <b-tabs expanded v-model="activeTab">
+          <b-tabs expanded v-model="activeTab" type="is-boxed">
             <b-tab-item label="Team 1">
               <div class="columns is-mobile is-centered">
                 <div class="column is-half" style="width: fit-content">
@@ -197,12 +186,7 @@
                         : false
                     "
                   />
-                  <nuxt-img
-                    v-else
-                    :src="team2.team.logo"
-                    width="150px"
-                    format="webp"
-                  />
+                  <nuxt-img v-else :src="team2.team.logo" width="150px" format="webp" />
                 </div>
                 <div class="column is-half">
                   <b-field label="Team 2 :">
@@ -234,50 +218,52 @@
               : ((cardOne = 'start'), (overlay = true))
           "
           type="is-primary"
-          >Lineup</b-button
-        >
+        >Lineup</b-button>
       </div>
     </div>
     <div style="height: 250px"></div>
 
-    <footer >
+    <footer>
       <div
-        class="content has-text-centered has-text-white"
-        style="margin: 10px; padding: 50px; color: white !important"
+        class="content has-text-centered has-text-black"
+        style="margin: 10px; padding: 50px; color: black !important"
       >
-        <div class="columns ">
-          <nuxt-img
-            src="/442Club.webp"
-            alt="Team Logo"
-            width="150px"
-            provider="static"
-          />
+        <div class="columns">
+          <nuxt-img src="/442Club.webp" alt="Team Logo" width="150px" provider="static" />
           <div class="column is-2" style="text-align: left">
-            About
+            <strong>About</strong>
+            <hr style="margin:0px;padding:0px" />
             <P>
-              442 is an web app that let you create lineup of football teams to
+              <strong>442</strong> is an web app that let you create lineup of football teams to
               help explain football tactics
             </P>
           </div>
         </div>
         <div
-          class="columns is-centered"
+          class="columns is-centered is-mobile"
           style="
             width: 100%;
             margin: 10px;
           "
         >
           <div class="column is-2">
-            <a href="Twitter.com">twitter</a>
+            <a href="https://twitter.com/Adem1250_Dr">
+              <b-icon icon="twitter"></b-icon>
+            </a>
           </div>
           <div class="column is-2">
-            <a href="Twitter.com">Github</a>
+            <a href="https://github.com/floki1250">
+              <b-icon icon="github"></b-icon>
+            </a>
           </div>
           <div class="column is-2">
-            <a href="Twitter.com">LinkedIN</a>
+            <a href="https://www.linkedin.com/in/adem-dardour/">
+              <b-icon icon="linkedin"></b-icon>
+            </a>
           </div>
         </div>
-        Made with ❤️ by Me
+
+        <strong>Made with ❤️ by Me</strong>
       </div>
     </footer>
   </div>

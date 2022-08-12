@@ -194,9 +194,14 @@ body,
   transform: rotateX(180deg);
 }
 .label {
-  color: #dddddd !important;
+  color: #fff !important;
 }
-footer{
+footer {
   background: $primary;
   color: $white;
+}
+.is-2 {
+  a {
+    color: #000;
+  }
 }
