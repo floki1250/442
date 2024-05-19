@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="dark:bg-black min-h-screen">
     <NuxtLayout>
       <NuxtLoadingIndicator />
       <header
-        class="fixed top-0 z-50 w-full border-b border-gray-200 dark:border-gray-600 bg-background/95 backdrop-blur  p-2">
+        class="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-600 bg-background/90 backdrop-blur  p-2">
         <div class="flex justify-between items-center">
           <div class="image">
             <NuxtLink to="/" class="text-3xl font-bold">
@@ -19,7 +19,6 @@
             <UIcon class="text-2xl  "
               :name="$colorMode.preference == 'light' ? 'i-heroicons-sun' : 'i-heroicons-moon'" />
           </div>
-
         </div>
       </header>
       <UContainer>
