@@ -1,11 +1,10 @@
 <template>
-    <div class="h-screen w-full home-screen flex justify-center  ">
-
+    <div class="h-screen w-full home-screen   flex justify-center items-center">
         <div
             class="fixed bottom-0  mb-8 my-4 z-50 h-fit p-4 bg-black/70 border border-lime-400/50 backdrop-blur-md rounded-lg flex flex-col justify-center items-center">
             <div class="flex">
                 <UInput variant="outline" placeholder="Enter Match Code" v-model="match" size="md" class="pr-1" />
-                <UButton label="Join Match" :to="match" class="pl-1">
+                <UButton label="View Match" :to="match" class="pl-1">
                     <template #leading>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
                             <path fill="currentColor"
@@ -14,7 +13,7 @@
                     </template>
                 </UButton>
             </div>
-            <UButton icon="i-heroicons-plus" block label="Organise a Match" class="mt-4">
+            <UButton block label="Organise a Match" class="mt-4">
                 <template #leading>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                         <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -29,15 +28,21 @@
     </div>
 </template>
 <script setup lang="ts">
-const match = ref('')
 definePageMeta({
     colorMode: 'dark',
+
 })
+const router = useRouter()
+const match = ref('')
+function onSubmit () {
+    router.push({ name: 'match', params: { match: match.value } })
+}
 </script>
 <style lang="scss">
 .home-screen {
-    background: url('/messi.jpg');
-    background-size: cover;
+    background: url('/messi2.jpg');
+    background-size: cover contain;
     background-position: center;
+    background-repeat: no-repeat;
 }
 </style>

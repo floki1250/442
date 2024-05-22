@@ -1,7 +1,7 @@
 <template>
   <div class="dark:bg-black min-h-screen">
     <NuxtLayout>
-      <NuxtLoadingIndicator />
+      <NuxtLoadingIndicator color="#9cf21a" />
       <header
         class="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-600 bg-background/90 backdrop-blur  p-2">
         <div class="flex justify-between items-center">
@@ -24,6 +24,7 @@
       <UContainer>
         <NuxtPage />
       </UContainer>
+      <UNotifications />
     </NuxtLayout>
   </div>
 </template>

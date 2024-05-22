@@ -5,8 +5,15 @@ export default defineNuxtConfig({
       title: "442",
     },
   },
+  nitro: {
+    storage: {
+      data: {
+        driver: "vercelKV",
+      },
+    },
+  },
   devtools: { enabled: false },
-  modules: ["@nuxt/ui"],
+  modules: ["@nuxtjs/device", "@nuxt/ui", "@nuxt/image"],
   css: ["@/assets/main.scss"],
   colorMode: {
     preference: "dark", // default value of $colorMode.preference
