@@ -7,7 +7,7 @@
                     Match Code :
                     <span class="text-lime-300 font-mono font-bold uppercase">{{
                         route.params.match
-                    }}</span>
+                        }}</span>
                 </h1>
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -101,6 +101,7 @@ interface MatchData {
     team2: string[];
     stadium: string;
     readonly: boolean;
+    date_updated: string;
 }
 const date: Ref<Date | null> = ref(null);
 const time = ref();
@@ -125,7 +126,8 @@ if (matchs.value) {
         team1: [],
         team2: [],
         stadium: "",
-        readonly: false
+        readonly: false,
+        date_updated: "",
     }
 }
 
@@ -133,7 +135,8 @@ async function onSubmit () {
     try {
         if (data.value) {
             data.value.date = dateString.value;
-            data.value.readonly = true
+            data.value.readonly = true;
+            data.value.date_updated = new Date().toISOString()
         }
         console.log(data.value);
         await $fetch("/api/match", { method: "POST", body: data.value });

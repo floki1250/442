@@ -13,7 +13,7 @@
                     </template>
                 </UButton>
             </div>
-            <UButton block label="Organise a Match" class="mt-4">
+            <UButton block label="Organise a Match" class="mt-4" @click="onSubmit()">
                 <template #leading>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                         <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -30,13 +30,73 @@
 <script setup lang="ts">
 definePageMeta({
     colorMode: 'dark',
-
 })
-const router = useRouter()
-const match = ref('')
-function onSubmit () {
-    router.push({ name: 'match', params: { match: match.value } })
+interface MatchData {
+    code: string;
+    date: string;
+    team1: string[];
+    team2: string[];
+    stadium: string;
+    readonly: boolean;
+    date_updated: string;
 }
+
+const router = useRouter()
+const toast = useToast()
+const match = ref('')
+let currentSequence = "AAB";
+async function onSubmit () {
+    try {
+        const matchcode = generateString();
+        await $fetch("/api/match", {
+            method: "POST", body: {
+                code: matchcode,
+                date: "",
+                team1: [],
+                team2: [],
+                stadium: "",
+                readonly: false,
+                date_updated: "",
+            }
+        });
+        router.push('/' + matchcode)
+    } catch {
+        toast.add({
+            id: 'error',
+            title: 'Error',
+            description: 'Error Creating. Please try again. ',
+            icon: 'i-heroicons-x-circle',
+            color: 'red',
+        })
+    }
+
+}
+
+
+function incrementAlphabetSequence (seq: string) {
+    let arr = seq.split('');
+    for (let i = arr.length - 1; i >= 0; i--) {
+        if (arr[i] === 'Z') {
+            arr[i] = 'A';
+        } else {
+            arr[i] = String.fromCharCode(arr[i].charCodeAt(0) + 1);
+            return arr.join('');
+        }
+    }
+    arr.unshift('A');
+    return arr.join('');
+}
+
+function generateString () {
+    const year = new Date().getFullYear();
+    const yearLastTwoDigits = year.toString().slice(-2);
+    const result = currentSequence + yearLastTwoDigits;
+    currentSequence = incrementAlphabetSequence(currentSequence);
+    return result;
+}
+
+
+
 </script>
 <style lang="scss">
 .home-screen {

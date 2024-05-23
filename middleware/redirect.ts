@@ -1,12 +1,12 @@
 export default defineNuxtRouteMiddleware(async (to, from) => {
   const toast = useToast();
-  const { data: matchs } = await useFetch(`/api/match`, {
+  const matchs = await $fetch(`/api/match`, {
     method: "GET",
     query: { code: to.params.match },
   });
 
-  console.log("match code", to.params.match, matchs.value);
-  if (!matchs.value) {
+  console.log("match code", to.params.match, matchs);
+  if (!matchs) {
     toast.add({
       id: "error",
       title: "Error",
