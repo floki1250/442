@@ -1,5 +1,6 @@
 <template>
     <div class="h-screen w-full home-screen   flex justify-center items-center">
+
         <div
             class="fixed bottom-0  mb-8 my-4 z-50 h-fit p-4 bg-black/70 border border-lime-400/50 backdrop-blur-md rounded-lg flex flex-col justify-center items-center">
             <div class="flex">
