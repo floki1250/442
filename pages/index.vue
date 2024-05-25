@@ -1,10 +1,16 @@
 <template>
-    <div class="h-screen w-full home-screen   flex justify-center items-center">
-
+    <div class="w-full h-full traslate-y-1/2  flex justify-center items-end ">
         <div
-            class="fixed bottom-0  mb-8 my-4 z-50 h-fit p-4 bg-black/70 border border-lime-400/50 backdrop-blur-md rounded-lg flex flex-col justify-center items-center">
+            class="my-4  p-4 bg-black/70 border border-lime-400/50 backdrop-blur-md rounded-lg flex flex-col justify-center items-center">
+            <div class="px-4 ">
+                <svg width="256" height="256" viewBox="0 0 164 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M42.3 0L8.225 33.605V41.125H31.725V21.15L41.125 11.75V57.575H31.725V49.35H0V33.37C0 32.43 0 31.6858 0 31.1375C0.0783333 30.5892 0.195831 30.1192 0.352498 29.7275C0.509164 29.2575 0.744171 28.8658 1.0575 28.5525C1.37084 28.1608 1.7625 27.6908 2.2325 27.1425L29.14 0H42.3ZM103.345 0L69.2702 33.605V41.125H92.7702V21.15L102.17 11.75V57.575H92.7702V49.35H61.0452V33.37C61.0452 32.43 61.0452 31.6858 61.0452 31.1375C61.1235 30.5892 61.241 30.1192 61.3977 29.7275C61.5543 29.2575 61.7893 28.8658 62.1027 28.5525C62.416 28.1608 62.8077 27.6908 63.2777 27.1425L90.1852 0H103.345ZM163.215 57.575H122.09V45.2375L153.815 21.9725V8.225H131.49V16.45H122.09V8.225C122.09 5.95333 122.873 4.03417 124.44 2.4675C126.085 0.822501 128.043 0 130.315 0H154.99C157.261 0 159.18 0.822501 160.747 2.4675C162.392 4.03417 163.215 5.95333 163.215 8.225V25.2625L132.077 48.175V49.35H163.215V57.575Z"
+                        fill="white" />
+                </svg>
+            </div>
             <div class="flex">
-                <UInput variant="outline" placeholder="Enter Match Code" v-model="match" size="md" class="pr-1" />
+                <UInput variant="outline" placeholder="Enter Match Code" v-model="matchInput" size="md" class="pr-1" />
                 <UButton label="View Match" :to="match" class="pl-1">
                     <template #leading>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
@@ -28,10 +34,12 @@
         </div>
     </div>
 </template>
+
 <script setup lang="ts">
 definePageMeta({
     colorMode: 'dark',
 })
+
 interface MatchData {
     code: string;
     date: string;
@@ -45,22 +53,49 @@ interface MatchData {
 const router = useRouter()
 const toast = useToast()
 const match = ref('')
-let currentSequence = "AAB";
+const matchInput = computed({
+    get () {
+        return match.value.toUpperCase();
+    },
+    set (value) {
+        match.value = value.toUpperCase();
+    }
+});
+async function verifyCode (code: any) {
+    const { data: matchs } = await useFetch<MatchData>(`/api/match`, {
+        method: "GET",
+        query: { code: code },
+    });
+    if (!matchs.value) {
+        return false
+    } else return true
+}
 async function onSubmit () {
     try {
-        const matchcode = generateString();
-        await $fetch("/api/match", {
-            method: "POST", body: {
-                code: matchcode,
-                date: "",
-                team1: [],
-                team2: [],
-                stadium: "",
-                readonly: false,
-                date_updated: "",
-            }
-        });
-        router.push('/' + matchcode)
+        const matchcode = generateRandomString();
+        if (await verifyCode(matchcode)) {
+            toast.add({
+                id: 'error',
+                title: 'Error',
+                description: 'Error Creating Code Already Exists. ',
+                icon: 'i-heroicons-x-circle',
+                color: 'red',
+            })
+            return;
+        } else {
+            await $fetch("/api/match", {
+                method: "POST", body: {
+                    code: matchcode,
+                    date: "",
+                    team1: [],
+                    team2: [],
+                    stadium: "",
+                    readonly: false,
+                    date_updated: "",
+                }
+            });
+            router.push('/' + matchcode)
+        }
     } catch {
         toast.add({
             id: 'error',
@@ -74,36 +109,26 @@ async function onSubmit () {
 }
 
 
-function incrementAlphabetSequence (seq: string) {
-    let arr = seq.split('');
-    for (let i = arr.length - 1; i >= 0; i--) {
-        if (arr[i] === 'Z') {
-            arr[i] = 'A';
-        } else {
-            arr[i] = String.fromCharCode(arr[i].charCodeAt(0) + 1);
-            return arr.join('');
-        }
+function generateRandomString (): string {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let result = '';
+    for (let i = 0; i < 3; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        result += characters[randomIndex];
     }
-    arr.unshift('A');
-    return arr.join('');
-}
-
-function generateString () {
-    const year = new Date().getFullYear();
-    const yearLastTwoDigits = year.toString().slice(-2);
-    const result = currentSequence + yearLastTwoDigits;
-    currentSequence = incrementAlphabetSequence(currentSequence);
     return result;
 }
 
 
 
 </script>
-<style lang="scss">
+<style scoped lang="scss">
 .home-screen {
     background: url('/messi2.jpg');
-    background-size: cover contain;
+    background-size: contain;
+    background-color: #a3e635;
     background-position: center;
     background-repeat: no-repeat;
+
 }
 </style>
