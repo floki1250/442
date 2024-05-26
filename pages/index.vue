@@ -1,7 +1,9 @@
 <template>
-    <div class="w-full h-full traslate-y-1/2  flex justify-center items-end ">
+    <div class="w-full h-screen   flex justify-center">
         <div
-            class="my-4  p-4 bg-black/70 border border-lime-400/50 backdrop-blur-md rounded-lg flex flex-col justify-center items-center">
+            class="blur-blob absolute z-10 top-48 left-50 md:top-20 md:left-50 lg:top-20 lg:left-50  dark:bg-lime-400 w-96 h-96 md:w-40 md:h-40 sm:w-40 sm:h-40 lg:w-96 lg:h-96 ">
+        </div>
+        <div class="sm:w-full lg:w-96 p-4  flex flex-col justify-center items-center  backdrop-blur-md  ">
             <div class="px-4 ">
                 <svg width="256" height="256" viewBox="0 0 164 58" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -9,9 +11,12 @@
                         fill="white" />
                 </svg>
             </div>
-            <div class="flex">
-                <UInput variant="outline" placeholder="Enter Match Code" v-model="matchInput" size="md" class="pr-1" />
-                <UButton label="View Match" :to="match" class="pl-1">
+            <div class="w-full">
+                <UInput variant="outline" placeholder="Enter Match Code" v-model="matchInput" size="md"
+                    class="w-full" />
+            </div>
+            <div class="flex mt-4 justify-between items-center  w-full">
+                <UButton label="View Match" :to="match" class="mr-4">
                     <template #leading>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
                             <path fill="currentColor"
@@ -19,18 +24,20 @@
                         </svg>
                     </template>
                 </UButton>
+                <UButton label="Organise a Match" @click="onSubmit()" class="ml-4">
+                    <template #leading>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2">
+                                <path d="M9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0M3 9h3v6H3zm15 0h3v6h-3z" />
+                                <path
+                                    d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm9-2v14" />
+                            </g>
+                        </svg>
+                    </template>
+                </UButton>
             </div>
-            <UButton block label="Organise a Match" class="mt-4" @click="onSubmit()">
-                <template #leading>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2">
-                            <path d="M9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0M3 9h3v6H3zm15 0h3v6h-3z" />
-                            <path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm9-2v14" />
-                        </g>
-                    </svg>
-                </template>
-            </UButton>
+
         </div>
     </div>
 </template>
@@ -123,12 +130,11 @@ function generateRandomString (): string {
 
 </script>
 <style scoped lang="scss">
-.home-screen {
-    background: url('/messi2.jpg');
-    background-size: contain;
-    background-color: #a3e635;
-    background-position: center;
-    background-repeat: no-repeat;
-
+.blur-blob {
+    filter: blur(60px);
+    transition-duration: 2s;
+    transition-timing-function: cubic-bezier(.075, .82, .165, 1);
+    border-radius: 9999px;
+    z-index: -10;
 }
 </style>
