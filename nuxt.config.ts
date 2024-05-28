@@ -12,6 +12,12 @@ export default defineNuxtConfig({
       },
     },
   },
+  runtimeConfig: {
+    rapidapi: {
+      apiUrl: process.env.X_RapidAPI_Host,
+      apiKey: process.env.X_RapidAPI_Key,
+    },
+  },
   devtools: { enabled: false },
   modules: ["@nuxtjs/device", "@nuxt/ui", "@nuxt/image", "@vite-pwa/nuxt"],
   pwa: {

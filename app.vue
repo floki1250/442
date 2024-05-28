@@ -1,9 +1,9 @@
 <template>
-  <div class="min-h-screen">
+  <div class="min-h-screen bg-[#f7f7f7] dark:bg-black">
     <NuxtLayout>
       <NuxtLoadingIndicator color="#9cf21a" />
-      <header v-if="$route.path != '/'"
-        class="sticky top-0 z-50  w-full border-b border-gray-200 dark:border-gray-600 bg-background/90 backdrop-blur  p-2">
+      <header
+        class="fixed top-0 z-50  w-full border-b border-gray-200 dark:border-gray-600 bg-background/90 backdrop-blur  p-2">
         <div class="flex justify-between items-center h-12">
           <div class="image">
 
@@ -15,6 +15,32 @@
               </svg>
             </NuxtLink>
           </div>
+          <div class=" w-fit flex  justify-center p-1 ">
+            <div
+              class="text-black dark:text-white hover:bg-white dark:hover:bg-gray-900 rounded-full p-2 m-0.5 w-full h-full whitespace-nowrap">
+              <NuxtLink to="/"
+                class="text-black dark:text-white  font-semibold hover:text-riptide-400 group transition-all ease-linear duration-500">
+                <Icon name="i-tabler-soccer-field" class="text-2xl group-hover:text-lime-500" />
+                <span class="p-2 hidden group-hover:inline lg:inline group-hover:text-lime-500">LiveScore</span>
+              </NuxtLink>
+            </div>
+            <div
+              class="text-black dark:text-white hover:bg-white dark:hover:bg-gray-900 rounded-full p-2 m-0.5 w-full h-full whitespace-nowrap">
+              <NuxtLink to="/news"
+                class="text-black dark:text-white  font-semibold hover:text-riptide-400 group transition-all ease-linear duration-500">
+                <Icon name="i-heroicons-newspaper" class="text-2xl group-hover:text-lime-500" />
+                <span class="p-2 hidden group-hover:inline lg:inline group-hover:text-lime-500">Football News</span>
+              </NuxtLink>
+            </div>
+            <div
+              class="text-black dark:text-white hover:bg-white dark:hover:bg-gray-900 rounded-full p-2 m-0.5 w-full h-full whitespace-nowrap">
+              <NuxtLink to="/match"
+                class="text-black dark:text-white  font-semibold hover:text-riptide-400 group transition-all ease-linear duration-500">
+                <Icon name="i-bx-football" class="text-2xl group-hover:text-lime-500" />
+                <span class="p-2 hidden group-hover:inline lg:inline group-hover:text-lime-500">Organize Match</span>
+              </NuxtLink>
+            </div>
+          </div>
           <div class="relative flex justify-center ">
 
             <div @mouseenter="show = true" class=" info p-2">
@@ -23,7 +49,7 @@
 
             <transition name="fade">
               <div
-                class=" p-1 py-4 absolute z-50 top-0 left-0 rounded-xl bg-gray-200 border-white dark:bg-gray-800  border dark:border-gray-600 shadow-2xl "
+                class=" p-1 py-4 absolute z-50 top-0 left-0 rounded-xl bg-gray-100 border-white dark:bg-gray-800  border dark:border-gray-600 shadow-2xl "
                 v-if="show" @mouseleave="show = false">
                 <div
                   @click="$colorMode.preference == 'light' ? $colorMode.preference = 'dark' : $colorMode.preference = 'light'">
@@ -90,6 +116,7 @@
               </div>
             </transition>
           </div>
+
         </div>
       </header>
       <UContainer>
@@ -97,16 +124,12 @@
       </UContainer>
       <UNotifications />
     </NuxtLayout>
+
   </div>
 </template>
 <script setup lang="ts">
 const show = ref(false);
-const beforeEnter = (el: { style: { visibility: string; }; }) => {
-  el.style.visibility = 'hidden';
-}
-const enter = (el: { style: { visibility: string; }; }) => {
-  el.style.visibility = 'visible';
-}
+
 </script>
 <style lang="scss" scoped>
 .fade-enter-active,

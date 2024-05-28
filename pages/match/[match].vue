@@ -1,5 +1,5 @@
 <template>
-    <div class="py-4 " v-if="data">
+    <div class="py-20 " v-if="data">
 
         <div v-if="data" class="w-full bg-gray-100 dark:bg-gray-800 my-4 rounded-lg p-2">
             <div class="flex justify-between items-center p-2">
@@ -7,7 +7,7 @@
                     Match Code :
                     <span class="text-lime-300 font-mono font-bold uppercase">{{
                         route.params.match
-                        }}</span>
+                    }}</span>
                 </h1>
                 <div @click="sharelink" class="text-2xl hover:text-lime-400">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
