@@ -14,6 +14,6 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
       icon: "i-heroicons-x-circle",
       color: "red",
     });
-    return navigateTo("/");
+    return navigateTo("/match");
   }
 });

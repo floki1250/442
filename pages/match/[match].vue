@@ -7,7 +7,7 @@
                     Match Code :
                     <span class="text-lime-300 font-mono font-bold uppercase">{{
                         route.params.match
-                    }}</span>
+                        }}</span>
                 </h1>
                 <div @click="sharelink" class="text-2xl hover:text-lime-400">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -89,11 +89,12 @@
     </div>
 </template>
 <script setup lang="ts">
-import { useShare } from '@vueuse/core'
+
 definePageMeta({
     middleware: 'redirect',
+    colorMode: 'dark',
 })
-const { share, isSupported } = useShare()
+
 
 const route = useRoute();
 const toast = useToast()
