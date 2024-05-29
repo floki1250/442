@@ -26,7 +26,7 @@
             </div>
             <div
               class="text-black dark:text-white hover:bg-white dark:hover:bg-gray-900 rounded-full p-2 m-0.5 w-full h-full whitespace-nowrap">
-              <NuxtLink to="/news"
+              <NuxtLink href="/news"
                 class="text-black dark:text-white  font-semibold hover:text-riptide-400 group transition-all ease-linear duration-500">
                 <Icon name="i-heroicons-newspaper" class="text-2xl group-hover:text-lime-500" />
                 <span class="p-2 hidden group-hover:inline lg:inline group-hover:text-lime-500">Football News</span>

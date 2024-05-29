@@ -13,9 +13,8 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    rapidapi: {
-      apiUrl: process.env.X_RapidAPI_Host,
-      apiKey: process.env.X_RapidAPI_Key,
+    public: {
+      apiKey: process.env.NEWSAPI_API_KEY,
     },
   },
   devtools: { enabled: false },
