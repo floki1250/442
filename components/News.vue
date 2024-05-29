@@ -11,10 +11,8 @@
 </template>
 
 <script setup lang="ts">
-const config = useRuntimeConfig()
-const keywords = 'Football OR Soccer';
-const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(keywords)}&language=en&apiKey=${config.public.apiKey}`;
+
 const { data: news } = await useAsyncData('news', () =>
-    $fetch(url)
+    $fetch("/api/news")
 );
 </script>

@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      title: "442",
+      title: "442 𝗙𝗼𝗼𝘁𝗯𝗮𝗹𝗹 𝗨𝗻𝗶𝘃𝗲𝗿𝘀𝗲",
     },
   },
   nitro: {
@@ -13,9 +13,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    public: {
-      apiKey: process.env.NEWSAPI_API_KEY,
-    },
+    apiKey: process.env.NEWSAPI_API_KEY,
   },
   devtools: { enabled: false },
   modules: ["@nuxtjs/device", "@nuxt/ui", "@nuxt/image", "@vite-pwa/nuxt"],
