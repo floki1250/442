@@ -1,4 +1,6 @@
-![Mockup442](https://github.com/floki1250/442/assets/37814393/d56f68fa-2679-4dbe-a5a4-00eeffb67b72)
+<div align="center">
+  ![Mockup442](https://github.com/floki1250/442/assets/37814393/d56f68fa-2679-4dbe-a5a4-00eeffb67b72)
+</div>
 
 # 442 - Football Universe
 
